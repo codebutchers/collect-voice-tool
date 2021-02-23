@@ -29,15 +29,27 @@ var audioContext = new AudioContext;
 //new audio context to help us record 
 var recordButton = document.getElementById("recordButton");
 var uploadButton = document.getElementById("uploadButton");
+var recordCount = document.getElementById("recordCount");
 //add events to those 3 buttons 
 recordButton.addEventListener("click", startRecording);
 uploadButton.addEventListener("click", uploadFiles);
-
+uploadButton.disabled = true;
 var audioTracks = [];
-
+var trackCount;
 /* Simple constraints object, for more advanced audio features see
 
 https://addpipe.com/blog/audio-constraints-getusermedia/ */
+
+function check(){
+     recordCount.innerHTML = "RECORDED: " + audioTracks.length;
+     if (audioTracks.length == 10){
+          recordButton.disabled = true;
+          uploadButton.disabled = false;
+     } else {
+          recordButton.disabled = false;
+          uploadButton.disabled = true;
+     }
+} 
 
 function startRecording() {
 	console.log("recordButton clicked");
@@ -110,11 +122,24 @@ function stopRecording() {
      rec.exportWAV(createDownloadLink);
 }
 
+function deleteAudioTrack(delBtn, li, blob){
+     li.remove();
+     delBtn.remove(); 
+     console.log(blob);
+     var numTrack = audioTracks.indexOf(blob);
+     audioTracks.splice(numTrack,1);  
+     console.log(audioTracks);
+
+     check();
+}
+
 function createDownloadLink(blob) {
      var url = URL.createObjectURL(blob);
      var au = document.createElement('audio');
      var li = document.createElement('li');
      var link = document.createElement('a');
+     var delBtn = document.createElement('button');
+     delBtn.innerHTML = "X";
      //add file to audioTracks
      audioTracks.push(blob);
      //add controls to the <audio> element 
@@ -127,8 +152,12 @@ function createDownloadLink(blob) {
      //add the new audio and a elements to the li element 
      li.appendChild(au);
      li.appendChild(link);
+     recordingsList.appendChild(delBtn); 
      //add the li element to the ordered list 
      recordingsList.appendChild(li);
+     delBtn.addEventListener("click", () => deleteAudioTrack(delBtn, li, blob));
+     console.log(audioTracks);
+     check();
 }
 
 function uploadFiles(){
@@ -140,7 +169,6 @@ function uploadFiles(){
           formData.append('file', audioTracks[i]);
           formData.append('upload_preset', cloudinaryUploadPreset);
           formData.append('public_id', filename);
-
           fetch(CLOUDINARY_URL, {
                method: 'POST',
                body: formData,
@@ -150,4 +178,5 @@ function uploadFiles(){
                console.error(err);
           })
      }
+
 }

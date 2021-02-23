@@ -4,17 +4,29 @@
      <title>Simple Recorder.js demo with record, stop and pause</title>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="stylesheet" href="./style.css">
-          <div id="controls">
-               <button class="6" id="recordButton">Record</button>
+     <h1>Recording Comment 6</h1>
+     <div id=container>
+          <h3>"XOAY!"</h3>
+          <div class="p2container">
+               <p2>Các bạn nhấn vào phím Record lại để thu giọng nói của mình tương ứng với lệnh ở trên, thu 10 lần một lệnh sau đó nhấn nút Upload giúp mình nhé ^^</p2>
           </div>
-          <h3>Command 6 Recordings</h3>
+          <div id="controls">
+               <button class="6 btn" id="recordButton">Record</button>
+          </div>
+          <h2  id="recordCount">Recorded: 0</h2>
+          <h2>Command 6 Recordings:</h2>
           <ol id="recordingsList"></ol>
-
-          <button id="uploadButton">Upload</button>  
-          <a href="index7.html">Next</a>
-
-     
+          <button class="btn" id="uploadButton">Upload</button>  
+          <div id="linkbox">
+               <a href="index5.html">Prev<<</a>
+               <a href="index7.html">>>Next</a>
+          </div>
+          <img src="logo.jpg" id="logo"/>
+     </div>
      <!-- inserting these scripts at the end to be able to use all the elements in the DOM --> 
      <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
      <script src="./app.js"></script>
+     <style>
+          @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
+     </style>
 </html>
