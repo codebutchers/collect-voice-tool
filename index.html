@@ -1,27 +1,21 @@
 <!DOCTYPE html>
 <html>
      <meta charset="UTF-8">
-     <title>Simple Recorder.js demo with record, stop and pause</title>
+     <title>CodeButchers voice collecting tool</title>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="stylesheet" href="./style.css">
-          <h1>Command 1</h1>
-          <div id=container>
-               <h3>"XIN CHÀO!"</h3>
-               <div class="p2container">
-                    <p2>Các bạn nhấn vào phím Record lại để thu giọng nói của mình tương ứng với lệnh ở trên, thu 10 lần một lệnh sau đó nhấn nút Upload giúp mình nhé ^^</p2>
-               </div>
-               <div id="controls">
-                    <button class="1 btn" id="recordButton">Record</button>
-               </div>
-               <h2  id="recordCount">Recorded: 0</h2>
-               <h2>Command 1 Recordings:</h2>
-               <ol id="recordingsList"></ol>
-               <button class="btn" id="uploadButton">Upload</button>  
-               <div id="linkbox">
-               <a href="index2.html">>>Next</a>
-               </div>
-               <img src="logo.jpg" id="logo"/>
-          </div> 
+     <h1>CODEBUTCHERS</h1>
+     <div id=container>
+     <div class="p2container">
+     <p2>Xin chào các bạn, bọn mình là nhóm CodeButchers. Hiện tại bọn mình cần thu thập thông tin giọng nói của con người dùng để training 1 con Robot AI phục vụ cho việc hoàn thành đồ án. Tổng cộng có 10 lệnh cần thu, bọn mình sẽ rất biết ơn nếu như bạn có thể giúp bọn mình thu thập thông tin từ chính giọng nói của bạn ^^</p2>
+     </div>
+     <div id="linkbox">
+          <a class="linkButton" href="./pages/index1.html">LET'S START</a>
+     </div>
+
+     <img src="./src/logo.jpg" id="logo"/>
+</div>
+
      <!-- inserting these scripts at the end to be able to use all the elements in the DOM --> 
      <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
      <script src="./app.js"></script>

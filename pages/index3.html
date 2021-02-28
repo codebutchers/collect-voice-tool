@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
      <meta charset="UTF-8">
-     <title>Simple Recorder.js demo with record, stop and pause</title>
+     <title>CodeButchers voice collecting tool</title>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="./style.css">
+     <link rel="stylesheet" href="../style.css">
      <h1>Command 3</h1>
      <div id=container>
           <h3>"LÙI!"</h3>
           <div class="p2container">
                <p2>Các bạn nhấn vào phím Record lại để thu giọng nói của mình tương ứng với lệnh ở trên, thu 10 lần một lệnh sau đó nhấn nút Upload giúp mình nhé ^^</p2>
           </div>
+          <h4 class="ready"> </h4>
           <div id="controls">
                <button class="3 btn" id="recordButton">Record</button>
           </div>
@@ -17,16 +18,17 @@
           <h2>Command 3 Recordings:</h2>
           <ol id="recordingsList"></ol>
           <button class="btn" id="uploadButton">Upload</button>  
+          <p id='status'> </p> 
           <div id="linkbox">
                <a href="index2.html">Prev<<</a>
-               <a href="index4.html">>>Next</a>
+               <a id='next' href="index4.html">>>Next</a>
           </div>
-          <img src="logo.jpg" id="logo"/>
+          <img src="../src/logo.jpg" id="logo"/>
      </div>
 
      <!-- inserting these scripts at the end to be able to use all the elements in the DOM --> 
      <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
-     <script src="./app.js"></script>
+     <script src="../app.js"></script>
      <style>
           @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
      </style>

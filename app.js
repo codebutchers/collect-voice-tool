@@ -30,12 +30,19 @@ var audioContext = new AudioContext;
 var recordButton = document.getElementById("recordButton");
 var uploadButton = document.getElementById("uploadButton");
 var recordCount = document.getElementById("recordCount");
+
+var nextButton = document.getElementById("next");
+var statusBar = document.getElementById("status");
+var readyBar = document.getElementsByClassName("ready")[0];
+
 //add events to those 3 buttons 
 recordButton.addEventListener("click", startRecording);
 uploadButton.addEventListener("click", uploadFiles);
 uploadButton.disabled = true;
+nextButton.hidden = true;
 var audioTracks = [];
 var trackCount;
+var uploadCount = 0;
 /* Simple constraints object, for more advanced audio features see
 
 https://addpipe.com/blog/audio-constraints-getusermedia/ */
@@ -53,6 +60,7 @@ function check(){
 
 function startRecording() {
 	console.log("recordButton clicked");
+     readyBar.innerHTML = "Xin mời nói!"
 	/*
 		Simple constraints object, for more advanced audio features see
 		https://addpipe.com/blog/audio-constraints-getusermedia/
@@ -102,7 +110,7 @@ function startRecording() {
 		console.log("Recording started");
           });
           
-          setTimeout(stopRecording, 1500);
+          setTimeout(stopRecording, 1600);
 		
 
 	}).catch(function(err) {
@@ -113,6 +121,7 @@ function startRecording() {
 
 function stopRecording() {
      console.log("stopButton clicked");
+     readyBar.innerHTML = "";
      //disable the stop button, enable the record too allow for new recordings 
      recordButton.disabled = false;
      //tell the recorder to stop the recording 
@@ -129,7 +138,6 @@ function deleteAudioTrack(delBtn, li, blob){
      var numTrack = audioTracks.indexOf(blob);
      audioTracks.splice(numTrack,1);  
      console.log(audioTracks);
-
      check();
 }
 
@@ -161,6 +169,7 @@ function createDownloadLink(blob) {
 }
 
 function uploadFiles(){
+     uploadButton.disabled = true;
      var pathNumber = parseInt(recordButton.className);
      var cloudinaryUploadPreset = eval(`COMMAND_${pathNumber}_PRESET`);
      for(let i = 0; i < audioTracks.length; i++){
@@ -173,6 +182,12 @@ function uploadFiles(){
                method: 'POST',
                body: formData,
           }).then((res) => {
+               uploadCount++;
+               statusBar.innerHTML = "Uploaded " + uploadCount + " file(s)";
+               if(uploadCount === 10){
+                    statusBar.innerHTML = "Upload thành công! Click Next để tiếp tục...";
+                    nextButton.hidden = false;
+               }
                return res.json();
           }).catch((err) => {
                console.error(err);
